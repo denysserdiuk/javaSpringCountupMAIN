@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <title>Create Account - CountUp</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/css/global.css" rel="stylesheet"/>
+    <link href="/css/register.css" rel="stylesheet"/>
+</head>
+
+<body>
+<div class="register-page">
+    <div class="register-page__container">
+
+        <div class="register-page__brand">
+            <i class="fas fa-chart-line"></i> CountUp
+        </div>
+
+        <h2 class="register-page__heading">Create Account</h2>
+        <p class="register-page__subheading">Join us to start tracking your finances.</p>
+
+        <form th:action="@{/CreateUser}" method="post" class="register-page__form">
+            <input type="hidden" name="name" value="User">
+
+            <div class="form-group">
+                <label class="form-label">Username</label>
+                <input type="text" name="username" placeholder="Choose a username" required
+                       class="register-page__input" th:classappend="${usernameError} ? 'is-invalid'">
+                <div class="register-error-message" th:if="${usernameError}">
+                    <i class="fas fa-exclamation-circle"></i> <span th:text="${usernameError}"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" name="email" placeholder="name@example.com" required
+                       class="register-page__input" th:classappend="${emailError} ? 'is-invalid'">
+                <div class="register-error-message" th:if="${emailError}">
+                    <i class="fas fa-exclamation-circle"></i> <span th:text="${emailError}"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" name="password" placeholder="••••••••" required class="register-page__input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Confirm</label>
+                    <input type="password" name="repeatPassword" placeholder="••••••••" required class="register-page__input">
+                </div>
+            </div>
+
+            <div class="register-error-message" th:if="${passwordError}">
+                <i class="fas fa-exclamation-circle"></i> <span th:text="${passwordError}"></span>
+            </div>
+
+            <div class="register-error-message" th:if="${verificationError}">
+                <i class="fas fa-exclamation-circle"></i> <span th:text="${verificationError}"></span>
+            </div>
+
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+            <button type="submit" class="register-page__button register-page__button--submit">
+                Create Account
+            </button>
+
+            <div class="register-page__divider">
+                <span>Or register with</span>
+            </div>
+
+            <div class="social-buttons">
+                <button type="button" class="register-page__button register-page__button--google">
+                    <i class="fab fa-google"></i> Google
+                </button>
+                <button type="button" class="register-page__button register-page__button--facebook">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </button>
+            </div>
+        </form>
+
+        <div class="register-page__footer">
+            Already have an account? <a href="/login" class="register-page__link">Sign In</a>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="verify-email-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Verify Your Email</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form th:action="@{/verify}" method="post" id="verify-email-form">
+                <div class="modal-body">
+                    <p class="text-muted mb-3">Enter the 6-digit code sent to your email.</p>
+                    <div class="form-group">
+                        <input type="number"
+                               inputmode="numeric"
+                               name="verification"
+                               id="verification"
+                               class="register-page__input text-center"
+                               style="letter-spacing: 5px; font-size: 1.2rem;"
+                               required>
+                    </div>
+                    <div class="register-error-message mt-2" th:if="${verificationError}">
+                        <i class="fas fa-exclamation-circle"></i> <span th:text="${verificationError}"></span>
+                    </div>
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-ghost" id="resendCodeButton">Resend Code</button>
+                    <button type="submit" class="btn-primary-modal">Verify</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    document.addEventListener('DOMContentLoaded', function() {
+        var verificationPending = /*[[${verificationPending}]]*/ false;
+        if (verificationPending) {
+            var myModal = new bootstrap.Modal(document.getElementById('verify-email-modal'));
+            myModal.show();
+        }
+    });
+    /*]]>*/
+</script>
+<script src="/js/register.js"></script>
+</body>
+</html>

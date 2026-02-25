@@ -1,0 +1,310 @@
+@charset "UTF-8";
+@import url(global.css);
+
+body {
+    background-color: var(--bg-sidebar); /* Deep Slate */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 40px 20px; /* Prevent card touching edges on small screens */
+    font-family: 'Inter', sans-serif;
+}
+
+.register-page {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.register-page__container {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 48px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    max-width: 500px; /* Slightly wider than login for the split inputs */
+}
+
+/* --- BRANDING --- */
+.register-page__brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.register-page__heading {
+    margin: 0 0 8px 0;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--text-main);
+    text-align: center;
+}
+
+.register-page__subheading {
+    margin: 0 0 32px 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+/* --- FORM LAYOUT --- */
+.register-page__form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+/* Side-by-side inputs */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-main);
+    margin-bottom: 8px;
+}
+
+.register-page__input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background-color: #f8fafc;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+}
+
+.register-page__input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+.register-page__input.is-invalid {
+    border-color: var(--danger);
+    background-color: #fef2f2;
+}
+
+/* --- MESSAGES --- */
+.register-error-message {
+    color: var(--danger);
+    font-size: 0.85rem;
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* --- BUTTONS --- */
+.register-page__button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.register-page__button--submit {
+    background-color: var(--primary);
+    color: white;
+    margin-top: 10px;
+    box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
+}
+.register-page__button--submit:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+/* --- SOCIAL SECTION --- */
+.register-page__divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin: 24px 0;
+}
+.register-page__divider::before,
+.register-page__divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e2e8f0;
+}
+.register-page__divider span {
+    padding: 0 10px;
+}
+
+.social-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.register-page__button--google {
+    background-color: #ffffff;
+    color: var(--text-main);
+    border: 1px solid #cbd5e1;
+}
+.register-page__button--google:hover {
+    background-color: #f8fafc;
+    border-color: #94a3b8;
+}
+
+.register-page__button--facebook {
+    background-color: #1877f2;
+    color: white;
+}
+.register-page__button--facebook:hover {
+    background-color: #166fe5;
+}
+
+/* --- FOOTER --- */
+.register-page__footer {
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    border-top: 1px solid #f1f5f9;
+    padding-top: 24px;
+}
+
+.register-page__link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+.register-page__link:hover {
+    text-decoration: underline;
+}
+
+/* --- MODAL STYLES (Specific to Auth) --- */
+.modal-content {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+.modal-header {
+    border-bottom: 1px solid #f1f5f9;
+    padding: 20px 24px;
+}
+.modal-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+.modal-body {
+    padding: 24px;
+}
+.modal-footer {
+    border-top: 1px solid #f1f5f9;
+    padding: 16px 24px;
+    background-color: #f9fafb;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+.btn-primary-modal {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+.btn-primary-modal:hover {
+    background-color: var(--primary-hover);
+}
+.btn-ghost {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-right: 10px;
+}
+.btn-ghost:hover {
+    color: var(--text-main);
+}
+
+/* register.css - MOBILE PATCH */
+
+@media (max-width: 480px) {
+    body {
+        padding: 16px;
+        padding-top: 20px;
+        height: auto; /* Allow scrolling */
+        display: block; /* Remove flex centering to allow scroll */
+    }
+
+    .register-page__container {
+        padding: 24px 20px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Stack the Password/Confirm Password fields */
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    /* Stack Google/Facebook */
+    .social-buttons {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    /* Fix iOS Zoom */
+    .register-page__input {
+        font-size: 16px;
+        padding: 14px;
+    }
+
+    /* --- FIX VERIFY EMAIL MODAL --- */
+    .modal-dialog {
+        margin: 10px; /* Ensure margin from screen edges */
+        max-width: 100%;
+    }
+
+    .modal-content {
+        padding: 0; /* Let body handle padding */
+    }
+
+    .modal-header, .modal-footer {
+        padding: 15px;
+    }
+
+    .modal-body {
+        padding: 20px 15px;
+    }
+
+    /* Fix the wide letter spacing on the code input */
+    #verification {
+        letter-spacing: 2px !important; /* Reduce from 5px */
+        font-size: 1.5rem !important;
+        padding: 10px;
+        text-align: center;
+        width: 100%;
+    }
+}

@@ -1,0 +1,47 @@
+@import url(global.css);
+
+/* Reuse existing container styles, just allow auto height */
+.--delete-users {
+    max-width: 600px;
+    height: auto; /* Override fixed height from dashboard */
+    margin: 0 auto; /* Center it */
+    border-color: var(--danger);
+}
+
+/* --- NOTIFICATION BANNER --- */
+#notification-area {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    min-width: 300px;
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    gap: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* States */
+.notification-hidden {
+    top: -100px !important; /* Hide off screen */
+    opacity: 0;
+}
+
+.notification-success {
+    background-color: #10b981; /* Emerald */
+    color: white;
+}
+
+.notification-error {
+    background-color: #ef4444; /* Red */
+    color: white;
+}

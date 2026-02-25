@@ -1,0 +1,419 @@
+/* home-main.css */
+.main {
+    margin-left: var(--sidebar-width);
+    padding: 32px; /* More breathing room */
+    min-height: 100vh;
+    transition: margin-left var(--transition-smooth);
+}
+
+/* When sidebar collapses */
+.sidebar--collapsed + .main,
+body:has(.sidebar--collapsed) .main { /* Modern CSS selector */
+    margin-left: var(--sidebar-width-collapsed);
+}
+
+/* --- HEADER --- */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+}
+
+.dashboard-header__title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.dashboard-header__current-month {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.btn-primary-custom {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
+    transition: all var(--transition-fast);
+}
+
+.btn-primary-custom:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* --- STAT CARDS --- */
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.card {
+    background: var(--bg-card);
+    border: 1px solid #e2e8f0; /* Subtle border */
+    border-radius: var(--border-radius);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: #cbd5e1;
+}
+
+.card__title {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.card__value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0;
+}
+
+/* Add a colored accent line to the top of cards */
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--primary);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+.card:hover::after {
+    opacity: 1;
+}
+
+/* --- TABLES & WINDOWS --- */
+.windows-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.window-container {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    height: 500px; /* Fixed height for consistency */
+}
+
+.window-container__header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.window-container__title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.scrollable-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 0; /* Remove padding for edge-to-edge table */
+}
+
+/* Table Styling */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+.table thead th {
+    background-color: #f8fafc;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 16px 24px;
+    font-weight: 600;
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+}
+
+.table tbody td {
+    padding: 16px 24px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #f1f5f9;
+    color: var(--text-main);
+}
+
+.table tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+/* Right align numbers (Standard for finance) */
+.table td:nth-child(2),
+.table th:nth-child(2) {
+    text-align: right;
+    font-family: 'Roboto Mono', monospace; /* Monospace for numbers alignment */
+    font-weight: 500;
+}
+
+.window-container__footer {
+    padding: 16px 24px;
+    border-top: 1px solid #e2e8f0;
+    background-color: #fcfcfc;
+}
+
+.btn-add-item {
+    width: 100%;
+    border: 1px dashed #cbd5e1;
+    background: transparent;
+    color: var(--text-muted);
+    padding: 12px;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.btn-add-item:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: #f0fdf4;
+}
+
+/* CHARTS SECTION */
+
+.charts-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 24px;
+    margin-bottom: 50px; /* Space at bottom of page */
+}
+
+.chart-container {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-container__title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--text-main);
+}
+
+/* THE FIX: Fixed height wrapper for the canvas */
+.chart-container__content {
+    position: relative;
+    height: 300px;  /* <--- STRICT HEIGHT LIMIT */
+    width: 100%;
+}
+
+/* Ensure canvas doesn't fight the container */
+.chart-container canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- MODAL OVERRIDES (Fixing Bootstrap) --- */
+
+/* 1. Ensure Modal sits on top of everything (Sidebar is z-index 1000) */
+.modal {
+    z-index: 1050; /* Bootstrap default, but good to be explicit */
+}
+.modal-backdrop {
+    z-index: 1040;
+}
+
+/* 2. The Modal Card Itself */
+.modal-content {
+    background-color: var(--bg-card); /* Pure White */
+    border: 1px solid #e2e8f0;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    font-family: 'Inter', sans-serif;
+}
+
+/* 3. Header Styling */
+.modal-header {
+    border-bottom: 1px solid #f1f5f9;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin: 0;
+}
+
+.btn-close {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+.btn-close:hover {
+    opacity: 1;
+}
+
+/* 4. Body & Inputs */
+.modal-body {
+    padding: 24px;
+}
+
+.modal-form__group {
+    margin-bottom: 20px;
+}
+
+.modal-form__label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.modal-form__input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    background-color: #f8fafc; /* Very light gray input bg */
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.modal-form__input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1); /* Emerald Glow */
+}
+
+/* 5. Footer & Buttons */
+.modal-footer {
+    border-top: 1px solid #f1f5f9;
+    padding: 16px 24px;
+    background-color: #fcfcfc;
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* Reuse your existing custom button styles if available, or define here */
+.btn-close-modal {
+    background-color: transparent;
+    border: 1px solid #cbd5e1;
+    color: var(--text-muted);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.btn-close-modal:hover {
+    background-color: #f1f5f9;
+    color: var(--text-main);
+}
+
+.btn-save-changes-modal {
+    background-color: var(--primary);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+}
+
+.btn-save-changes-modal:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+}
+/* home-main.css - RESPONSIVE PATCH */
+
+/* 1. Fix Grid overflows on Mobile */
+@media (max-width: 1024px) {
+    /* Tablet: Switch to 2 columns */
+    .dashboard-cards,
+    .windows-section,
+    .charts-section {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    /* Mobile: Stack everything in 1 column */
+    .dashboard-cards,
+    .windows-section,
+    .charts-section {
+        grid-template-columns: 1fr; /* Force single column */
+    }
+
+    /* Remove huge margins */
+    .main {
+        margin-left: var(--sidebar-width-collapsed); /* 70px */
+        padding: 16px; /* Reduce padding from 32px */
+    }
+
+    /* Fix Header Layout */
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .dashboard-header button {
+        width: 100%; /* Full width button on mobile */
+    }
+
+    /* Allow tables to scroll horizontally if needed */
+    .scrollable-list {
+        overflow-x: auto;
+    }
+
+    /* Fix Modal Widths */
+    .modal-dialog {
+        margin: 10px; /* Add margin so it doesn't touch edges */
+    }
+}

@@ -1,0 +1,56 @@
+/* global.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* --- PALETTE: Modern FinTech --- */
+    /* Backgrounds */
+    --bg-body: #f8fafc;       /* Very light cool gray */
+    --bg-card: #ffffff;       /* Pure white */
+    --bg-sidebar: #0f172a;    /* Deep Slate (almost black) */
+
+    /* Text */
+    --text-main: #1e293b;     /* Dark Slate */
+    --text-muted: #64748b;    /* Cool Gray */
+    --text-light: #f1f5f9;    /* Off white for dark backgrounds */
+
+    /* Accents */
+    --primary: #10b981;       /* Emerald Green (Growth/Money) */
+    --primary-hover: #059669;
+    --danger: #ef4444;        /* Soft Red */
+    --warning: #f59e0b;       /* Amber */
+
+    /* Dimensions & Effects */
+    --sidebar-width: 260px;
+    --sidebar-width-collapsed: 70px;
+    --header-height: 70px;
+    --border-radius: 12px;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    font-family: 'Inter', sans-serif; /* Standard enterprise font */
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    -webkit-font-smoothing: antialiased; /* Makes font look thinner/sharper */
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
